@@ -765,6 +765,33 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("XBzZEweSKZS5_vIGP"); // Replace with your EmailJS user ID
+        })();
+
+        document.getElementById('callbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+
+            // Send email
+            emailjs.send('service_5ix6d5w', 'template_ifso9ik', formData)
+                .then(function(response) {
+                    alert('Request sent successfully!');
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function(error) {
+                    alert('Failed to send request. Please try again later.');
+                    console.log('FAILED...', error);
+                });
+        });
+    </script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
